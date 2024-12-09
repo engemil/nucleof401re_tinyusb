@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "stm32f4xx_hal.h": "c",
+        "tusb.h": "c",
+        "tusb_option.h": "c"
+    }
+}
