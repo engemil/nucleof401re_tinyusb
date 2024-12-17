@@ -54,12 +54,12 @@ static board_pindef_t board_pindef[] = {
   },
   { // UART TX
     .port = GPIOA,
-    .pin_init = { .Pin = GPIO_PIN_12, .Mode = GPIO_MODE_AF_PP, .Pull = GPIO_PULLUP, .Speed = GPIO_SPEED_HIGH, .Alternate = GPIO_AF8_USART6 },
+    .pin_init = { .Pin = GPIO_PIN_2, .Mode = GPIO_MODE_AF_PP, .Pull = GPIO_PULLUP, .Speed = GPIO_SPEED_HIGH, .Alternate = GPIO_AF7_USART2 },
     .active_state = 0
   },
   { // UART RX
     .port = GPIOA,
-    .pin_init = { .Pin = GPIO_PIN_11, .Mode = GPIO_MODE_AF_PP, .Pull = GPIO_PULLUP, .Speed = GPIO_SPEED_HIGH, .Alternate = GPIO_AF8_USART6 },
+    .pin_init = { .Pin = GPIO_PIN_3, .Mode = GPIO_MODE_AF_PP, .Pull = GPIO_PULLUP, .Speed = GPIO_SPEED_HIGH, .Alternate = GPIO_AF7_USART2 },
     .active_state = 0
   },
 };
@@ -83,7 +83,7 @@ static inline void board_clock_init(void)
   /* Enable HSE Oscillator and activate PLL with HSE as source */
   //RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI; // Changed
-  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT; // Added
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   //RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
@@ -109,14 +109,12 @@ static inline void board_clock_init(void)
 }
 
 static inline void board_vbus_sense_init(uint8_t rhport) {
-  
-  /*
   if  (rhport == 0) {
     USB_OTG_FS->GCCFG |= USB_OTG_GCCFG_NOVBUSSENS;
     USB_OTG_FS->GCCFG &= ~USB_OTG_GCCFG_VBUSBSEN;
     USB_OTG_FS->GCCFG &= ~USB_OTG_GCCFG_VBUSASEN;
   }
-  */
+
 }
 
 static inline void board_vbus_set(uint8_t rhport, bool state) {
